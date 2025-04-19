@@ -3,6 +3,15 @@
 
 ---
 
+## Demande
+### Installer clang
+Pour installer `clang` sous Linux, utilisez la commande suivante :
+```bash
+sudo apt install clang
+```
+
+---
+
 ## Compilation de Curiosity
 Pour compiler le programme, utilisez la commande suivante :
 ```bash
@@ -31,7 +40,7 @@ Pour exécuter le programme, utilisez la commande suivante :
    Hauteur de chaque terrain (nombre de lignes).
 
 5. **`<d>`** :  
-   Densité des obstacles sur le terrain. C'est une valeur décimale entre `0` et `1` qui représente le pourcentage de cases occupées par des obstacles. Par exemple :
+   Densité des obstacles sur le terrain. C'est une valeur décimale entre `0` et `1` qui représente le pourcentage de cases occupées par des obstacles. Par exemple :  
    - `0.4` signifie que 40 % des cases seront des obstacles.
 
 6. **`<graine>`** :  
@@ -45,11 +54,30 @@ Pour exécuter le programme, utilisez la commande suivante :
 
 ---
 
+## Description des Tests
+Les tests sont créés selon l'énoncé de chaque TP :
+- **Tests_TP7** : Vérifie la position finale du robot après exécution.
+- **Tests_TP8** : Contient des programmes infinis pour trouver la sortie.
+- **Tests_TP9** : Vérifie les programmes pour l'observateur.
+
+---
+
+## Description de l'algorithme pour décider des obstacles
+L'algorithme utilisé dans le fichier `generation_terrains.c` pour décider si une case est un obstacle ou non est décrit comme suit :
+1. Générer une valeur aléatoire entre 0 et 100.
+2. Si cette valeur est inférieure à `dObst * 100` (où `dObst` est la densité des obstacles) :  
+   - Générer une autre valeur aléatoire entre 0 et 1.  
+   - Si cette valeur est 0, la case est un **rocher**.  
+   - Sinon, la case est de l'**eau**.
+3. Si la première valeur aléatoire est supérieure ou égale à `dObst * 100`, la case est **libre**.
+
+---
+
 ## Exemple d'exécution
 ```bash
-./curiosity-perf programme.txt 10 20 15 0.3 42 1000 fichier_res.txt
+./curiosity-perf Tests_TP8/infini_2.prg 10 20 15 0.3 42 1000 fichier_res.txt
 ```
-- **`programme.txt`** : Contient les instructions pour le rover.
+- **`Tests_TP8/infini_2.prg`** : Contient les instructions pour le rover.
 - **`10`** : Génère 10 terrains.
 - **`20`** : Chaque terrain a une largeur de 20 cases.
 - **`15`** : Chaque terrain a une hauteur de 15 cases.
@@ -60,8 +88,13 @@ Pour exécuter le programme, utilisez la commande suivante :
 
 ---
 
+## Résultat
+![Sortie](./img/sortie.png)
+
+---
+
 ## Notes
-- Assurez-vous que le fichier `programme.txt` est correctement formaté avant de l'exécuter.
+- Assurez-vous que le fichier `Tests_TP8/infini_2.prg` est correctement formaté avant de l'exécuter.
 - La densité des obstacles (`<d>`) doit être comprise entre `0` et `1`. Une valeur trop élevée peut rendre les terrains impraticables.
 - Le fichier de résultats (`<fichier_res>`) sera écrasé s'il existe déjà.
 
