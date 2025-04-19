@@ -89,6 +89,7 @@ int main(int argc, char **argv)
     }
 
     // Écriture du terrain généré dans le fichier resFile
+    fprintf(resFile, "Terrain %d:\n", i + 1);
     for (int x = 0; x < l; x++)
     {
       for (int y = 0; y < h; y++)
